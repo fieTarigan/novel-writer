@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./output.css" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <title>Novel Page</title>
+  </head>
+  <body class="bg-slate-900 flex justify-center">
+    <div class="mt-8">
+      <a
+        class="text-fuchsia-300 bg-slate-900 rounded-md hover:bg-slate-600 px-2 py-1"
+        href="/"
+        >Back to home page</a
+      >
+      <h1
+        class="flex justify-center text-5xl font-extrabold text-fuchsia-100 py-5"
+      >
+        Data Novels
+      </h1>
+      <a
+        class="text-fuchsia-300 bg-slate-900 rounded-md hover:bg-slate-600 px-2 py-1"
+        href="/novels/add"
+      >
+        Tambah Data
+      </a>
+
+      <div class="flex items-center justify-center bg-gray-900">
+        <div class="col-span-12">
+          <div class="overflow-auto lg:overflow-visible">
+            <table class="text-gray-400 border-separate space-y-6 text-sm">
+              <thead class="bg-gray-800 text-gray-500">
+                <tr class="rounded-2xl">
+                  <th class="p-3 text-left">Id</th>
+                  <th class="p-3">Judul Novel</th>
+                  <th class="p-3">Harga</th>
+                  <th class="p-3">Stok</th>
+                  <th class="p-3">Penulis</th>
+                  <th class="p-3">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% result.forEach((data) => {%>
+                <tr class="bg-gray-800 rounded-2xl">
+                  <td class="p-3"><%= data.id %></td>
+                  <td class="p-3">
+                    <div class="flex items-center align-middle">
+                      <img
+                        class="rounded-full h-12 w-12 object-cover"
+                        src="<%= data.image %>"
+                        alt="image"
+                      />
+                      <div class="ml-3"><%= data.title %></div>
+                    </div>
+                  </td>
+                  <td class="p-3"><%= data.price %></td>
+                  <td class="p-3 font-bold"><%= data.stock %></td>
+                  <td class="p-3">
+                    <ul><% data.Writers.forEach((data) => { %>
+                      <li><%= data.name %></li>
+                    <% }) %></ul>
+                  </td>
+                  <td class="p-3">
+                    <a
+                      href="/novels/update/<%= data.id %>"
+                      class="text-gray-400 hover:text-gray-100 mx-2"
+                    >
+                      <i class="material-icons-outlined text-base">edit</i>
+                    </a>
+                    <a
+                      href="/novels/delete/<%= data.id %>"
+                      class="text-gray-400 hover:text-gray-100 ml-2"
+                    >
+                      <i class="material-icons-round text-base"
+                        >delete_outline</i
+                      >
+                    </a>
+                  </td>
+                </tr>
+                <%}) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
