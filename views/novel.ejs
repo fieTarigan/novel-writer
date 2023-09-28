@@ -10,26 +10,87 @@
     />
     <title>Novel Page</title>
   </head>
-  <body class="bg-slate-900 flex justify-center">
+  <body class="bg-slate-900">
     <div class="mt-8">
-      <a
-        class="text-fuchsia-300 bg-slate-900 rounded-md hover:bg-slate-600 px-2 py-1"
-        href="/"
-        >Back to home page</a
-      >
-      <h1
-        class="flex justify-center text-5xl font-extrabold text-fuchsia-100 py-5"
-      >
-        Data Novels
-      </h1>
-      <a
-        class="text-fuchsia-300 bg-slate-900 rounded-md hover:bg-slate-600 px-2 py-1"
-        href="/novels/add"
-      >
-        Tambah Data
-      </a>
+      <section class="flex flex-col items-center justify-center mb-5">
+        <a
+          class="text-fuchsia-300 bg-slate-900 rounded-md hover:bg-slate-600 px-2 py-1"
+          href="/"
+          >Back to home page</a
+        >
+        <h1
+          class="flex justify-center text-5xl font-extrabold text-fuchsia-100 py-5"
+        >
+          Novels
+        </h1>
+        <a
+          class="text-fuchsia-300 bg-slate-900 rounded-md hover:bg-slate-600 px-2 pt-1"
+          href="/novels/add"
+        >
+          Tambah Data
+        </a>
+      </section>
 
-      <div class="flex items-center justify-center bg-gray-900">
+      <section class="px-12">
+        <div
+          class="grid grid-flow-row gap-5 text-neutral-600 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+        >
+          <% result.forEach((data) => {%>
+          <div
+            class="my-8 rounded shadow-lg shadow-gray-900 bg-gray-800 duration-300 hover:-translate-y-1"
+          >
+            <a _href="link" class="cursor-pointer">
+              <figure>
+                <div class="flex justify-center items-center">
+                  <img
+                    src="<%= data.image %>"
+                    class="rounded-t h-56 object-contain text-center"
+                  />
+                </div>
+
+                <figcaption class="p-4">
+                  <p
+                    class="text-lg mb-4 font-bold leading-relaxed text-gray-300"
+                  >
+                    <%= data.title %>
+                  </p>
+                  <small>
+                    <ul class="text-gray-400">
+                      <% data.Writers.forEach((data) => { %>
+                      <li><%= data.name %></li>
+                      <% }) %>
+                    </ul>
+                  </small>
+                  <div class="flex justify-between items-center">
+                    <small class="leading-5">Harga: <%= data.price %></small>
+                    <small class="leading-5">Stok: <%= data.stock %></small>
+                  </div>
+
+                  <div class="flex justify-center items-center">
+                    <a
+                      href="/novels/update/<%= data.id %>"
+                      class="text-gray-400 hover:text-gray-100 mx-2"
+                    >
+                      <i class="material-icons-outlined text-base">edit</i>
+                    </a>
+                    <a
+                      href="/novels/delete/<%= data.id %>"
+                      class="text-gray-400 hover:text-gray-100 mx-2"
+                    >
+                      <i class="material-icons-round text-base"
+                        >delete_outline</i
+                      >
+                    </a>
+                  </div>
+                </figcaption>
+              </figure>
+            </a>
+          </div>
+          <%}) %>
+        </div>
+      </section>
+
+      <!-- <div class="flex items-center justify-center bg-gray-900">
         <div class="col-span-12">
           <div class="overflow-auto lg:overflow-visible">
             <table class="text-gray-400 border-separate space-y-6 text-sm">
@@ -86,7 +147,7 @@
             </table>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </body>
 </html>

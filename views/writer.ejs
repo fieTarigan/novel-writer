@@ -12,22 +12,24 @@
   </head>
   <body class="bg-slate-900 flex justify-center">
     <div class="mt-8">
-      <a
-        class="text-fuchsia-300 bg-slate-900 rounded-md hover:bg-slate-600 px-2 py-1"
-        href="/"
-        >Back to home page</a
-      >
-      <h1
-        class="flex justify-center text-5xl font-extrabold text-fuchsia-100 py-5"
-      >
-        Data Writers
-      </h1>
-      <a
-        class="text-fuchsia-300 bg-slate-900 rounded-md hover:bg-slate-600 px-2 py-1"
-        href="/writers/add"
-      >
-        Tambah Data
-      </a>
+      <section class="flex flex-col items-center justify-center mb-5">
+        <a
+          class="text-fuchsia-300 bg-slate-900 rounded-md hover:bg-slate-600 px-2 py-1"
+          href="/"
+          >Back to home page</a
+        >
+        <h1
+          class="flex justify-center text-5xl font-extrabold text-fuchsia-100 py-5"
+        >
+          Writers
+        </h1>
+        <a
+          class="text-fuchsia-300 bg-slate-900 rounded-md hover:bg-slate-600 px-2 py-1"
+          href="/writers/add"
+        >
+          Tambah Data
+        </a>
+      </section>
 
       <div class="flex items-center justify-center bg-gray-900">
         <div class="col-span-12">
@@ -37,7 +39,7 @@
                 <tr class="rounded-2xl">
                   <th class="p-3 text-left">Id</th>
                   <th class="p-3">Nama Penulis</th>
-                  <th class="p-3">Usia</th>
+                  <th class="p-3">Umur</th>
                   <th class="p-3">Kota Lahir</th>
                   <th class="p-3">Karya Novel</th>
                   <th class="p-3">Action</th>
@@ -58,11 +60,13 @@
                     </div>
                   </td>
                   <td class="p-3"><%= data.age %></td>
-                  <td class="p-3 font-bold"><%= data.town %></td>
+                  <td class="p-3 font-bold"><%= data.birthTown %></td>
                   <td class="p-3">
-                    <ul><% data.Novels.forEach((data) => { %>
+                    <ul>
+                      <% data.Novels.forEach((data) => { %>
                       <li><%= data.title %></li>
-                    <% }) %></ul>
+                      <% }) %>
+                    </ul>
                   </td>
                   <td class="p-3">
                     <a
