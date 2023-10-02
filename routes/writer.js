@@ -62,25 +62,19 @@ writerRouter.post("/add", async (req, res) => {
 
 writerRouter.get("/delete/:id", async (req, res) => {
   try {
-    const result = await Writer.destroy({
+    await Writer.destroy({
       where: {
         id: Number(req.params.id),
       },
     });
 
-    const result2 = await NovelWriter.destroy({
+    await NovelWriter.destroy({
       where: {
         writerId: Number(req.params.id),
       },
     });
 
-    if (result === 1 && result2 === 2) {
-      res.redirect("/writers");
-    } else {
-      throw {
-        message: `Writer id ${req.params.id} has not been deleted.`,
-      };
-    }
+    res.redirect("/writers");
   } catch (error) {
     res.json(error);
   }

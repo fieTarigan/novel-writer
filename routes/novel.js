@@ -62,25 +62,19 @@ novelRouter.post("/add", async (req, res) => {
 
 novelRouter.get("/delete/:id", async (req, res) => {
   try {
-    const result = await Novel.destroy({
+    await Novel.destroy({
       where: {
         id: Number(req.params.id),
       },
     });
 
-    const result2 = await NovelWriter.destroy({
+    await NovelWriter.destroy({
       where: {
         novelId: Number(req.params.id),
       },
     });
 
-    if (result === 1 && result2 === 2) {
-      res.redirect("/novels");
-    } else {
-      throw {
-        message: `Novel id ${req.params.id} has not been deleted.`,
-      };
-    }
+    res.redirect("/novels");
   } catch (error) {
     res.json(error);
   }

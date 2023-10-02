@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       validate: {
         isInt: true,
-        min: 1,
+        min: 0,
       },
     },
     birthTown: {
@@ -48,6 +48,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks: {
       beforeValidate: (writer, options) => {
+        if (writer.image === '') {
+          writer.image = "https://cdn.icon-icons.com/icons2/1378/PNG/256/avatardefault_92824.png";
+        }
         writer.age = Number(writer.age);
       },
     },

@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       validate: {
         isInt: true,
-        min: 1,
+        min: 0,
       },
     },
     stock: {
@@ -52,6 +52,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks: {
       beforeValidate: (novel, options) => {
+        if (novel.image === '') {
+          novel.image = 'https://cdn.icon-icons.com/icons2/1632/PNG/256/62857notebookwithdecorativecover_109284.png';
+        }
         novel.price = Number(novel.price);
         novel.stock = Number(novel.stock);
       },
